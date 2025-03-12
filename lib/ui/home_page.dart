@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inherited_theme2/my_app.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +16,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Inherited Widget'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: appTheme.toggleTheme,
+            icon: Icon(appTheme.isDark ? Icons.dark_mode : Icons.light_mode),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
