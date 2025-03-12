@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:inherited_theme2/core/app_theme.dart';
 import 'package:inherited_theme2/ui/home_page.dart';
 
-late AppTheme appTheme;
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   ThemeData _themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
     useMaterial3: true,
     brightness: Brightness.light,
   );
+
+  late AppTheme appTheme;
 
   @override
   void initState() {
