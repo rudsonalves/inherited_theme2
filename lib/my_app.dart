@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inherited_theme2/core/app_theme.dart';
+import 'package:inherited_theme2/data/repository/local_repository.dart';
 import 'package:inherited_theme2/ui/home_page.dart';
 
 class MyApp extends StatefulWidget {
@@ -10,11 +11,26 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  final localRepository = LocalRepository();
   ThemeData _themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
     useMaterial3: true,
     brightness: Brightness.light,
   );
+
+  @override
+  void initState() {
+    super.initState();
+
+    initLocalPreferences();
+  }
+
+  Future<void> initLocalPreferences() async {
+    await localRepository.initalize();
+
+    final brightness = localRepository.getTheme();
+    if (brightness == Brightness.dark) _toggleTheme();
+  }
 
   void _toggleTheme() {
     setState(() {
@@ -22,6 +38,7 @@ class MyAppState extends State<MyApp> {
           _themeData.brightness == Brightness.dark
               ? ThemeData.light()
               : ThemeData.dark();
+      localRepository.setTheme(_themeData.brightness);
     });
   }
 
