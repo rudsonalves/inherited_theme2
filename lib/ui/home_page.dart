@@ -13,7 +13,21 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Title'),
+        title: Text('Inherited Widget'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlutterLogo(size: 100),
+            Text("Olá, Flutter!"),
+            FilledButton.icon(
+              onPressed: () {},
+              label: Text("Clique Aqui"),
+              icon: Icon(Icons.done),
+            ),
+          ],
+        ),
       ),
     );
   }
