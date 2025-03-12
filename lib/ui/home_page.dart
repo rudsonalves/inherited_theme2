@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inherited_theme2/core/app_theme.dart';
-import 'package:inherited_theme2/my_app.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    AppTheme appTheme = context.findAncestorStateOfType<MyAppState>()!.appTheme;
+    final appTheme = AppInheritedTheme.of(context);
 
     return Scaffold(
       appBar: AppBar(

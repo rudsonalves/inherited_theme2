@@ -16,28 +16,25 @@ class MyAppState extends State<MyApp> {
     brightness: Brightness.light,
   );
 
-  late AppTheme appTheme;
-
-  @override
-  void initState() {
-    super.initState();
-
-    appTheme = AppTheme(themeData: _themeData, toggleTheme: _toggleTheme);
-  }
-
   void _toggleTheme() {
     setState(() {
-      _themeData = appTheme.isDark ? ThemeData.light() : ThemeData.dark();
-      appTheme = AppTheme(themeData: _themeData, toggleTheme: _toggleTheme);
+      _themeData =
+          _themeData.brightness == Brightness.dark
+              ? ThemeData.light()
+              : ThemeData.dark();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: appTheme.themeData,
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+    return AppInheritedTheme(
+      themeData: _themeData,
+      toggleTheme: _toggleTheme,
+      child: MaterialApp(
+        theme: _themeData,
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+      ),
     );
   }
 }
